@@ -1,2 +1,3 @@
-FROM ubuntu
-RUN apt-get update && apt-get install -y git && apt-get install -y node-semver
+FROM node:12-alpine3.15
+
+RUN apk update && apk add bash git curl jq && npm install -g semver
