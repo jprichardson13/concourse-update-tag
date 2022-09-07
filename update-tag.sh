@@ -170,7 +170,7 @@ fi
 echo ::set-output name=tag::$new
 
 # create local git tag
-git tag 0.0.1
+git tag $new
 
 # push new tag ref to github
 dt=$(date '+%Y-%m-%dT%H:%M:%SZ')
