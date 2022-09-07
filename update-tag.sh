@@ -16,10 +16,10 @@ initial_version=${INITIAL_VERSION:-0.0.0}
 tag_context=${TAG_CONTEXT:-repo}
 suffix=${PRERELEASE_SUFFIX:-beta}
 verbose=${VERBOSE:-true}
-# since https://github.blog/2022-04-12-git-security-vulnerability-announced/ runner uses?
-git config --global --add safe.directory /github/workspace
 
-cd ${GITHUB_WORKSPACE}/${source}
+git clone https://github.com/jprichardson13/public-test-repo.git
+
+cd public-test-repo
 
 echo "*** CONFIGURATION ***"
 echo -e "\tDEFAULT_BUMP: ${default_semvar_bump}"
