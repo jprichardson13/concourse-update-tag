@@ -2,9 +2,6 @@
 
 set -o pipefail
 
-# Install dependencies
-apt-get install -y node-semver
-
 # config
 default_semvar_bump=${DEFAULT_BUMP:-patch}
 with_v=${WITH_V:-false}
