@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-apt-get update
+apt-get update --fix-missing
 apt-get install -y git
 
 # config
