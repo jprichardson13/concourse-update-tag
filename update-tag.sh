@@ -2,6 +2,7 @@
 
 set -o pipefail
 
+apt-get update
 apt-get install git
 
 # config
