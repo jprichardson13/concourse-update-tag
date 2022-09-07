@@ -6,7 +6,7 @@ set -o pipefail
 apt-get install -y node-semver
 
 # config
-default_semvar_bump=${DEFAULT_BUMP:-none}
+default_semvar_bump=${DEFAULT_BUMP:-patch}
 with_v=${WITH_V:-false}
 release_branches=${RELEASE_BRANCHES:-master,main}
 custom_tag=${CUSTOM_TAG}
