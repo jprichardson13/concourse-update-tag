@@ -171,8 +171,11 @@ git tag $new
 
 # push new tag ref to github
 dt=$(date '+%Y-%m-%dT%H:%M:%SZ')
-full_name=$GITHUB_REPOSITORY
-git_refs_url=$(jq .repository.git_refs_url $GITHUB_EVENT_PATH | tr -d '"' | sed 's/{\/sha}//g')
+#full_name=$GITHUB_REPOSITORY
+#git_refs_url=$(jq .repository.git_refs_url $GITHUB_EVENT_PATH | tr -d '"' | sed 's/{\/sha}//g')
+
+# Push new tag
+git push origin $new
 
 echo "$dt: **pushing tag $new to repo $full_name"
 
