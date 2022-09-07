@@ -2,8 +2,7 @@
 
 set -o pipefail
 
-apt update
-apt install -y git
+apt-get install git
 
 # config
 default_semvar_bump=${DEFAULT_BUMP:-none}
