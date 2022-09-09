@@ -12,6 +12,7 @@ dryrun=${DRY_RUN:-false}
 initial_version=${INITIAL_VERSION:-0.0.0}
 tag_context=${TAG_CONTEXT:-repo}
 suffix=${PRERELEASE_SUFFIX:-beta}
+append=${APPEND_STRING:-.}
 verbose=${VERBOSE:-true}
 
 git clone https://github.com/jprichardson13/public-test-repo.git
@@ -28,6 +29,7 @@ echo -e "\tDRY_RUN: ${dryrun}"
 echo -e "\tINITIAL_VERSION: ${initial_version}"
 echo -e "\tTAG_CONTEXT: ${tag_context}"
 echo -e "\tPRERELEASE_SUFFIX: ${suffix}"
+echo -e "\tAPPEND_STRING: ${append}"
 echo -e "\tVERBOSE: ${verbose}"
 
 current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -46,7 +48,7 @@ echo "pre_release = $pre_release"
 # fetch tags
 git fetch --tags
     
-tagFmt="^v?[0-9]+\.[0-9]+\.[0-9]+$" 
+tagFmt="^v?[0-9]+\.[0-9]+\.[0-9]"
 preTagFmt="^v?[0-9]+\.[0-9]+\.[0-9]+(-$suffix\.[0-9]+)?$" 
 
 tag=""
@@ -102,6 +104,11 @@ if [ "$tag_commit" == "$commit" ]; then
     exit 0
 fi
 
+echo "Tag to bump $tag"
+
+# strip end of tag
+tag=$(grep -o '[0-9]\.[0-9]\.[0-9]*' <<< $tag)
+
 # echo log if verbose is wanted
 if $verbose
 then
@@ -139,6 +146,12 @@ echo $part
 if $with_v
 then
 	new="v$new"
+fi
+
+# add suffix
+if [ $append != "." ]
+then
+	new="$new-$append"
 fi
 
 if [ ! -z $custom_tag ]
